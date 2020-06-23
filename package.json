@@ -1,0 +1,20 @@
+{
+  "name": "@fingerprintjs/weerm",
+  "version": "1.0.0",
+  "description": "Really tiny ORM for PostgreSQL",
+  "main": "index.js",
+  "repository": "https://github.com/fingerprintjs/weerm",
+  "author": "FingerprintJS",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "pg": "^8.2.1"
+  },
+  "devDependencies": {
+    "jest": "^26.1.0",
+    "prettier": "^2.0.5"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test jest"
+  }
+}
