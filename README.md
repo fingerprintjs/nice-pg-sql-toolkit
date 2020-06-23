@@ -1,5 +1,5 @@
 WEERM
 ============================
 
-Super tiny ORM for PG + Node
+Tiny ORM for PG + Node (<200 LOC)
 
