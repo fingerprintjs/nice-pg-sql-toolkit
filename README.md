@@ -1,7 +1,7 @@
 Weerm
 ============================
 
-Tiny SQL toolkit for PG + Node (<200 LOC)
+🧰 Tiny SQL toolkit for PG + Node (<200 LOC)
 
 ## Usage
 
@@ -11,7 +11,7 @@ Your database URL should be in `DATABASE_URL` env var, e.g.
 export DATABASE_URL=postgres://user:password@host/database:5432
 ```
 
-### Define your model, e.g. user
+### Define your model, for example models/user
 
 ```js
 // models/user.js
@@ -106,7 +106,7 @@ const findByFirstNameWithLimit = async (firstName, limit) => {
 // passing the current transaction as the last parameter
 await db.withTransaction(tr => {
   await User.update({id: 9363}, {lastName: 'Bunyan'}, tr)
-  await userAudit.create({entity: 'User', op: 'update', args: [{lastName: 'Bunyan'}]}, tr)
+  await UserAudit.create({entity: 'User', op: 'update', args: [{lastName: 'Bunyan'}]}, tr)
 })
 ```
 

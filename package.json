@@ -1,7 +1,7 @@
 {
   "name": "weerm",
-  "version": "1.0.0",
-  "description": "Tiny ORM for PostgreSQL",
+  "version": "0.1.0",
+  "description": "Tiny SQL toolkit for PG",
   "main": "index.js",
   "repository": "https://github.com/fingerprintjs/weerm",
   "author": "FingerprintJS",
@@ -15,6 +15,7 @@
     "prettier": "^2.0.5"
   },
   "scripts": {
-    "test": "NODE_ENV=test jest"
+    "test": "NODE_ENV=test jest",
+    "npm:release": "yarn publish --access public"
   }
 }
