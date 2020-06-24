@@ -1,5 +1,5 @@
 const { Pool } = require('pg')
-const UNIQUE_INDEX_VIOLATION_ERR_CODE = '23505'
+const UniqueIndexViolationErrCode = '23505'
 const pool = new Pool({ connectionString: process.env.DATABASE_URL })
 pool.on('acquire', () => {})
 pool.on('remove', () => {})
@@ -44,8 +44,8 @@ const insert = async (tr, tableName, columnValues, returning = ['id']) => {
       return result.rows[0]
     }
   } catch (e) {
-    if (e.code && e.code === UNIQUE_INDEX_VIOLATION_ERR_CODE) {
-      throwUniqueIndexViolationError(e)
+    if (e.code && e.code === UniqueIndexViolationErrCode) {
+      throw new UniqueIndexError(e)
     }
     throw e
   }
@@ -67,8 +67,8 @@ const update = async (tr, tableName, columnValues, condition) => {
   try {
     await (tr || pool).query(query, dollarValues)
   } catch (e) {
-    if (e.code && e.code === UNIQUE_INDEX_VIOLATION_ERR_CODE) {
-      throwUniqueIndexViolationError(e)
+    if (e.code && e.code === UniqueIndexViolationErrCode) {
+      throw new UniqueIndexError(e)
     }
     throw e
   }
@@ -168,10 +168,6 @@ class UniqueIndexError extends Error {
     let rawColumns = parts[1]
     return rawColumns.split(', ')
   }
-}
-
-function throwUniqueIndexViolationError(e) {
-  throw new UniqueIndexError(e)
 }
 
 module.exports = {

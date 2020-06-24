@@ -1,7 +1,7 @@
 {
-  "name": "@fingerprintjs/weerm",
+  "name": "weerm",
   "version": "1.0.0",
-  "description": "Really tiny ORM for PostgreSQL",
+  "description": "Tiny ORM for PostgreSQL",
   "main": "index.js",
   "repository": "https://github.com/fingerprintjs/weerm",
   "author": "FingerprintJS",
