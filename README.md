@@ -3,6 +3,10 @@ Weerm
 
 🧰 Tiny SQL toolkit for PG + Node (<200 LOC)
 
+```
+npm i weerm
+```
+
 ## Usage
 
 Your database URL should be in `DATABASE_URL` env var, e.g.
