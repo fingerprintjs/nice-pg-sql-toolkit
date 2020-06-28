@@ -114,6 +114,17 @@ await db.withTransaction(tr => {
 })
 ```
 
+If you want to execute certain actions after the transaction was rolled back,
+use the second function argument for this.
+
+```js
+let onRollback = () => {
+  // cleanup external resources
+  // e.g. // payment gateway rollback etc
+}
+await db.withTransaction(tr => {/* do something in transaction.. */}, onRollback)
+```
+
 ### Unique index violation
 
 ```js

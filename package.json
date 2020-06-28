@@ -1,6 +1,6 @@
 {
   "name": "weerm",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Tiny SQL toolkit for PG",
   "main": "src/index.js",
   "repository": "https://github.com/fingerprintjs/weerm",

@@ -1,10 +1,14 @@
 const { Pool } = require('pg')
 const UniqueIndexViolationErrCode = '23505'
 const pool = new Pool({ connectionString: process.env.DATABASE_URL })
-pool.on('acquire', () => {})
-pool.on('remove', () => {})
-pool.on('connect', () => {})
-pool.on('error', (e) => {})
+pool.on('acquire', () => {
+})
+pool.on('remove', () => {
+})
+pool.on('connect', () => {
+})
+pool.on('error', (e) => {
+})
 
 const shutdownPool = async () => {
   await pool.end()
@@ -111,7 +115,7 @@ const buildConditionSql = (condition, startDollarNumbering = 0) => {
   return parts.join(' ')
 }
 
-const withTransaction = async (cb) => {
+const withTransaction = async (cb, onAfterRollback) => {
   const client = await pool.connect()
   try {
     await client.query('BEGIN')
@@ -119,6 +123,9 @@ const withTransaction = async (cb) => {
     await client.query('COMMIT')
   } catch (e) {
     await client.query('ROLLBACK')
+    if (typeof onAfterRollback === 'function') {
+      onAfterRollback()
+    }
     throw e
   } finally {
     client.release()
