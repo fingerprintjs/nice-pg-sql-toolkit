@@ -108,10 +108,11 @@ const findByFirstNameWithLimit = async (firstName, limit) => {
 ```js
 // using transaction requires wrapping everything in a transaction and 
 // passing the current transaction as the last parameter
-await db.withTransaction(tr => {
+let userAudit = await db.withTransaction(async (tr) => {
   await User.update({id: 9363}, {lastName: 'Bunyan'}, tr)
-  await UserAudit.create({entity: 'User', op: 'update', args: [{lastName: 'Bunyan'}]}, tr)
+  return await UserAudit.create({entity: 'User', op: 'update', args: [{lastName: 'Bunyan'}]}, tr)
 })
+// note that the return value from the callback will be returned by withTransaction function
 ```
 
 If you want to execute certain actions after the transaction was rolled back,

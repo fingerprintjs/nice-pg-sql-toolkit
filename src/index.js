@@ -119,8 +119,9 @@ const withTransaction = async (cb, onAfterRollback) => {
   const client = await pool.connect()
   try {
     await client.query('BEGIN')
-    await cb(client)
+    let result = await cb(client)
     await client.query('COMMIT')
+    return result
   } catch (e) {
     await client.query('ROLLBACK')
     if (typeof onAfterRollback === 'function') {
