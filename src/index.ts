@@ -161,7 +161,7 @@ export const mapToColumns = (attrs: Record<string, unknown>, map: Record<string,
 
 export const mapFromColumns = (row: Record<string, unknown>, map: Record<string, string>): Record<string, unknown> => {
   if (!row) {
-    return null
+    return {}
   }
   return Object.keys(map).reduce((obj: Record<string, unknown>, key: string) => {
     const column = map[key]
@@ -174,7 +174,7 @@ class UniqueIndexError extends Error {
   readonly table: string
   readonly constraint: string
   readonly columns: string[]
-  constructor({ table, constraint, detail }) {
+  constructor({ table, constraint, detail }: { table: string; constraint: string; detail: string }) {
     super(detail)
     this.table = table
     this.constraint = constraint
