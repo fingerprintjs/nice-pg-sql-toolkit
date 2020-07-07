@@ -1,10 +1,12 @@
-Weerm
+Nice PG SQL  toolkit
 ============================
 
 🧰 Tiny SQL toolkit for PG + Node (<200 LOC)
 
 ```
-npm i weerm
+npm i nice-pg-sql-toolkit
+or
+yarn add nice-pg-sql-toolkit
 ```
 
 ## Usage
@@ -19,7 +21,7 @@ export DATABASE_URL=postgres://user:password@host/database:5432
 
 ```js
 // models/user.js
-const db = require('weerm')
+const db = require('nice-pg-sql-toolkit')
 
 const TableName = 'users'
 
@@ -44,7 +46,7 @@ const find = async (condition) => {
 }
 
 // second optional argument is a current transaction
-// transactions are optional and only required when 
+// transactions are optional and only required when
 // you need to execute multiple SQL statements as a single unit
 const create = async (attrs, tr) => {
   let columnValues = db.mapToColumns(attrs, columns)
@@ -63,7 +65,7 @@ const del = async (condition, tr) => {
 }
 ```
 
-### Use your model 
+### Use your model
 
 ```js
 const user = require('/models/user')
@@ -106,7 +108,7 @@ const findByFirstNameWithLimit = async (firstName, limit) => {
 ### Using transactions
 
 ```js
-// using transaction requires wrapping everything in a transaction and 
+// using transaction requires wrapping everything in a transaction and
 // passing the current transaction as the last parameter
 let userAudit = await db.withTransaction(async (tr) => {
   await User.update({id: 9363}, {lastName: 'Bunyan'}, tr)
