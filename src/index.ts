@@ -170,7 +170,7 @@ export const mapFromColumns = (row: Record<string, unknown>, map: Record<string,
   }, {})
 }
 
-class UniqueIndexError extends Error {
+export class UniqueIndexError extends Error {
   readonly table: string
   readonly constraint: string
   readonly columns: string[]

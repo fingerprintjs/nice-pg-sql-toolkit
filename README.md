@@ -1,4 +1,4 @@
-Nice PG SQL  toolkit
+Nice PG SQL toolkit
 ============================
 
 🧰 Tiny SQL toolkit for PG + Node (<200 LOC)

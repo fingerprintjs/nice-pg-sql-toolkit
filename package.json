@@ -1,7 +1,7 @@
 {
   "name": "nice-pg-sql-toolkit",
   "version": "0.5.0",
-  "description": "Nice PG SQL toolkit. Loves SQL. Not an ORM. Can do migrations",
+  "description": "Nice PG SQL toolkit. Loves SQL. Not an ORM.",
   "main": "dist/index.ts",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/fingerprintjs/nice-pg-sql-toolkit",
