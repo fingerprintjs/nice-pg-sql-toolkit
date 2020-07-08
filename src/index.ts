@@ -127,7 +127,7 @@ const buildConditionSql = (condition: Record<string, unknown>, startDollarNumber
   return parts.join(' ')
 }
 
-export const withTransaction = async <T>(cb: (tr: PoolClient) => T, onAfterRollback: () => void): Promise<T> => {
+export const withTransaction = async <T>(cb: (tr: PoolClient) => T, onAfterRollback?: () => void): Promise<T> => {
   const client = await pool.connect()
   try {
     await client.query('BEGIN')
