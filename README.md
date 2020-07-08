@@ -18,7 +18,7 @@ export DATABASE_URL=postgres://user:password@host/database:5432
 ```
 
 ### Simple usage
-_this approach is a good starting point, it uses DB-level attributes directly w/out column mapping
+_this approach is a good starting point, it uses DB-level attributes directly w/out column mapping_
 
 ```js
 const db = require('nice-pg-sql-toolkit')
