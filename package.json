@@ -1,20 +1,37 @@
 {
-  "name": "weerm",
-  "version": "0.4.0",
-  "description": "Tiny SQL toolkit for PG",
-  "main": "src/index.js",
-  "repository": "https://github.com/fingerprintjs/weerm",
+  "name": "nice-pg-sql-toolkit",
+  "version": "0.5.0",
+  "description": "Nice PG SQL toolkit. Loves SQL. Not an ORM.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "https://github.com/fingerprintjs/nice-pg-sql-toolkit",
   "author": "FingerprintJS",
   "license": "MIT",
   "private": false,
+  "files": [
+    "dist/index.js",
+    "dist/index.d.ts",
+    "src/index.ts",
+    "README.md"
+  ],
   "dependencies": {
     "pg": "^8.2.1"
   },
   "devDependencies": {
+    "@types/pg": "^7.14.3",
+    "@typescript-eslint/eslint-plugin": "^3.6.0",
+    "@typescript-eslint/parser": "^3.6.0",
+    "eslint": "^7.4.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "jest": "^26.1.0",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "typescript": "^4.0.0-beta"
   },
   "scripts": {
+    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "lint": "eslint --ext ts,tsx src/**/*",
+    "build": "tsc",
     "test": "NODE_ENV=test jest",
     "npm:release": "yarn publish --access public"
   }
