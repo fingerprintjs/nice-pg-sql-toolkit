@@ -181,7 +181,7 @@ export class UniqueIndexError extends Error {
     this.columns = this.parseColumns(detail)
   }
 
-  parseColumns(detail: string) {
+  parseColumns(detail: string): string[] {
     // error message usually looks like this (in case of a single-column) index violation
     // Key (email)=(valentin@fingerprintjs.com) already exists.
     // or like this (in case of a multi-column) index violation
