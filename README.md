@@ -1,5 +1,13 @@
+<div style="text-align:center">
+
+![logo](https://fpjs-public.s3.amazonaws.com/oss/nice-pg-sql-toolkit/logo.jpg)
+
 Nice PG SQL toolkit
 ============================
+
+![build](https://github.com/fingerprintjs/nice-pg-sql-toolkit/workflows/build/badge.svg)
+
+</div>
 
 🧰 Nice SQL toolkit for PG + Node (tiny, <200 LOC)
 
