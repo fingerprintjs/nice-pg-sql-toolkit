@@ -223,10 +223,10 @@ await migrator.down()
 
 ```shell script
 # you can use relative paths here
-yarn migrate db/migrations up
+yarn nice-pg-migrate db/migrations up
 
 # or
-yarn migrate db/migrations down
+yarn nice-pg-migrate db/migrations down
 ```
 
 Migration runner will maintain a special table called `db_versions` internally
