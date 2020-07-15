@@ -19,7 +19,6 @@ function printUsage() {
 }
 
 async function run() {
-  console.log(process.cwd())
   const [dir, direction] = process.argv.slice(2)
   if (!dir) {
     printUsage()
