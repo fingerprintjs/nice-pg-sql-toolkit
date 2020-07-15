@@ -8,13 +8,13 @@ function printUsage() {
   Nice PG SQL Toolkit: migrate CLI
 
   USAGE:
-  yarn migrate migrations_dir [up|down]
+  yarn nice-pg-migrate migrations_dir [up|down]
 
   Example to run all pending migrations (direction is up by default)
-  yarn migrate db/migrations
+  yarn nice-pg-migrate db/migrations
 
   Example to migrate down
-  yarn migrate db/migrations down`
+  yarn nice-pg-migrate db/migrations down`
   console.log(usage)
 }
 
