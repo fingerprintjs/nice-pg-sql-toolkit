@@ -1,6 +1,6 @@
 {
   "name": "nice-pg-sql-toolkit",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Nice PG SQL toolkit. Loves SQL. Not an ORM.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +12,10 @@
     "dist/bin/migrate.js",
     "dist/index.js",
     "dist/index.d.ts",
+    "dist/migrator.js",
+    "dist/migrator.d.ts",
     "src/index.ts",
+    "src/migrator.ts",
     "README.md"
   ],
   "dependencies": {
