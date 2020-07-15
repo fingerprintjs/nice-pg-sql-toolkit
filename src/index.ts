@@ -1,4 +1,5 @@
 import { Pool, PoolClient } from 'pg'
+import { Migrator } from './migrator'
 const UniqueIndexViolationErrCode = '23505'
 const pool = new Pool({ connectionString: process.env.DATABASE_URL })
 export const findOne = async (
@@ -37,7 +38,9 @@ export const insert = async (
   parts.push('VALUES')
   const dollars = Object.keys(columnValues).map((_, i) => `$${i + 1}`)
   parts.push(`(${dollars.join(', ')})`)
-  parts.push(`RETURNING ${returning.join(', ')}`)
+  if (returning.length > 0) {
+    parts.push(`RETURNING ${returning.join(', ')}`)
+  }
   const dollarValues = Object.keys(columnValues).map((key) => columnValues[key])
   const query = parts.join(' ')
   try {
@@ -98,7 +101,7 @@ export const del = async (
 
 export const query = async (
   sql: string,
-  dollarValues: unknown[],
+  dollarValues: unknown[] = [],
   tr?: PoolClient
 ): Promise<{ rows: Record<string, unknown>[] }> => {
   const result = await (tr || pool).query(sql, dollarValues)
@@ -191,4 +194,12 @@ export class UniqueIndexError extends Error {
     const rawColumns = parts[1]
     return rawColumns.split(', ')
   }
+}
+
+/**
+ * Creates a new instance of the migrator
+ * @param dir - directory with migrations
+ */
+export function createMigrator(dir: string): Migrator {
+  return new Migrator(dir)
 }

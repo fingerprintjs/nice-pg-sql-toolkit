@@ -1,6 +1,6 @@
 {
   "name": "nice-pg-sql-toolkit",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Nice PG SQL toolkit. Loves SQL. Not an ORM.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,6 +9,7 @@
   "license": "MIT",
   "private": false,
   "files": [
+    "dist/bin/migrate.js",
     "dist/index.js",
     "dist/index.d.ts",
     "src/index.ts",
@@ -34,5 +35,8 @@
     "build": "tsc",
     "test": "NODE_ENV=test jest",
     "npm:release": "yarn publish --access public"
+  },
+  "bin": {
+    "nice-pg-migrate": "dist/bin/migrate.js"
   }
 }
