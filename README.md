@@ -169,6 +169,70 @@ let res = await db.withTransaction(tr => {/* do something in transaction.. */}, 
   }
 ```
 
+### Using migrations
+
+This toolkit comes with a simple migration runner.
+
+To use it, create a directory with SQL scripts inside.
+
+Every DB version change requires two scripts: up and down.
+
+```sh
+db/migrations
+├── 0001_create_table1.up.sql
+└── 0001_drop_table1.down.sql
+    └──version └──name └── up or down
+```
+
+Example of `up` script:
+
+```sql
+create table users (
+  id serial primary key,
+  email text unique
+);
+```
+
+Example of `down` script:
+
+```sql
+drop table users;
+```
+You can place multiple create/drop statement in each file, they will be run inside a transaction
+and either all succeed or all fail.
+
+Once you have the migration files ready, you have two options: run migrations with API or with CLI
+
+
+#### API
+
+```js
+import db from 'nice-pg-sql-toolkit'
+
+// pass the migrations directory path
+const migrator = db.createMigrator('/opt/projects/your-project/db/migrations')
+
+// to run `up`
+await migrator.up()
+
+// to run `down`
+await migrator.down()
+```
+
+#### CLI
+
+```shell script
+# you can use relative paths here
+yarn migrate db/migrations up
+
+# or
+yarn migrate db/migrations down
+```
+
+Migration runner will maintain a special table called `db_versions` internally
+that will keep all applied migrations.
+
+
 MIT Licensed.
 
 Copyright FingerprintJS Inc., 2020.
