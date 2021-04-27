@@ -3,15 +3,16 @@ import { Migrator } from './migrator'
 
 const UniqueIndexViolationErrCode = '23505'
 
-const DefaultTimeout = 20_000
+const DefaultConnectionTimeout = 5000
+const DefaultQueryTimeout = 10_000
 const DefaultPoolSize = 10
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  connectionTimeoutMillis: Number(process.env.DATABASE_CONN_TIMEOUT ?? DefaultTimeout),
-  query_timeout: Number(process.env.DATABASE_QUERY_TIMEOUT ?? DefaultTimeout),
-  idle_in_transaction_session_timeout: Number(process.env.DATABASE_IDLE_TRAN_TIMEOUT ?? DefaultTimeout),
-  max: Number(process.env.POOL_SIZE ?? DefaultPoolSize),
+  connectionTimeoutMillis: Number(process.env.DATABASE_CONNECTION_TIMEOUT ?? DefaultConnectionTimeout),
+  query_timeout: Number(process.env.DATABASE_QUERY_TIMEOUT ?? DefaultQueryTimeout),
+  idle_in_transaction_session_timeout: Number(process.env.DATABASE_IDLE_TRANSACTION_TIMEOUT ?? DefaultQueryTimeout),
+  max: Number(process.env.DATABASE_POOL_SIZE ?? DefaultPoolSize),
 })
 
 export const findOne = async (
