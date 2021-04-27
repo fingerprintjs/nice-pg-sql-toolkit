@@ -1,7 +1,20 @@
 import { Pool, PoolClient } from 'pg'
 import { Migrator } from './migrator'
+
 const UniqueIndexViolationErrCode = '23505'
-const pool = new Pool({ connectionString: process.env.DATABASE_URL })
+
+const DefaultConnectionTimeout = 5000
+const DefaultQueryTimeout = 10_000
+const DefaultPoolSize = 10
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  connectionTimeoutMillis: Number(process.env.DATABASE_CONNECTION_TIMEOUT ?? DefaultConnectionTimeout),
+  query_timeout: Number(process.env.DATABASE_QUERY_TIMEOUT ?? DefaultQueryTimeout),
+  idle_in_transaction_session_timeout: Number(process.env.DATABASE_IDLE_TRANSACTION_TIMEOUT ?? DefaultQueryTimeout),
+  max: Number(process.env.DATABASE_POOL_SIZE ?? DefaultPoolSize),
+})
+
 export const findOne = async (
   tableName: string,
   condition: Record<string, unknown>
