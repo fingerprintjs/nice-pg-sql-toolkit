@@ -1,6 +1,6 @@
 {
-  "name": "nice-pg-sql-toolkit",
-  "version": "0.6.3",
+  "name": "@fpjs-incubator/nice-pg-sql-toolkit",
+  "version": "0.6.4",
   "description": "Nice PG SQL toolkit. Loves SQL. Not an ORM.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
