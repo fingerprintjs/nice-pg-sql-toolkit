@@ -25,6 +25,13 @@ Your database URL should be in `DATABASE_URL` env var, e.g.
 export DATABASE_URL=postgres://user:password@host/database:5432
 ```
 
+Alternatively you can specify a database URL as a parameter to `recreatePool`:
+
+```js
+const db = require('nice-pg-sql-toolkit')
+db.recreatePool({connectionString: 'postgres://localhost'})
+```
+
 ### Simple usage
 _this approach is a good starting point, it uses DB-level attributes directly w/out column mapping_
 
