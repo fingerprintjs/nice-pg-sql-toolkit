@@ -235,6 +235,6 @@ that will keep all applied migrations.
 
 MIT Licensed.
 
-Copyright FingerprintJS Inc., 2020.
+Copyright FingerprintJS Inc., 2020-2021.
 
 

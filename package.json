@@ -1,6 +1,6 @@
 {
   "name": "@fpjs-incubator/nice-pg-sql-toolkit",
-  "version": "0.6.4",
+  "version": "0.7.0",
   "description": "Nice PG SQL toolkit. Loves SQL. Not an ORM.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,18 +19,18 @@
     "README.md"
   ],
   "dependencies": {
-    "pg": "^8.2.1"
+    "pg": "^8.6.0"
   },
   "devDependencies": {
-    "@types/pg": "^7.14.3",
-    "@typescript-eslint/eslint-plugin": "^3.6.0",
-    "@typescript-eslint/parser": "^3.6.0",
-    "eslint": "^7.4.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "jest": "^26.1.0",
-    "prettier": "^2.0.5",
-    "typescript": "^4.0.0-beta"
+    "@types/pg": "^8.6.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.1",
+    "eslint": "^7.30.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.5"
   },
   "scripts": {
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
