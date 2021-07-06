@@ -1,19 +1,40 @@
 import { Pool, PoolClient } from 'pg'
 import { Migrator } from './migrator'
 
+// PoolOptions has inconsistent capitalization, but that's because pg PoolConfig has it this way
+// I'm leaving it as is and not creating a mapping on purpose
+interface PoolOptions {
+  connectionString?: string,
+  connectionTimeoutMillis?: number,
+  query_timeout?: number,
+  max?: number
+}
+
 const UniqueIndexViolationErrCode = '23505'
 
 const DefaultConnectionTimeout = 5000
 const DefaultQueryTimeout = 10_000
 const DefaultPoolSize = 10
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  connectionTimeoutMillis: Number(process.env.DATABASE_CONNECTION_TIMEOUT ?? DefaultConnectionTimeout),
-  query_timeout: Number(process.env.DATABASE_QUERY_TIMEOUT ?? DefaultQueryTimeout),
-  idle_in_transaction_session_timeout: Number(process.env.DATABASE_IDLE_TRANSACTION_TIMEOUT ?? DefaultQueryTimeout),
-  max: Number(process.env.DATABASE_POOL_SIZE ?? DefaultPoolSize),
-})
+const createPoolOptions = (poolOptions?: PoolOptions): PoolOptions => {
+  const newPoolOptions: PoolOptions = {
+    connectionString: poolOptions?.connectionString ?? process.env.DATABASE_URL,
+    connectionTimeoutMillis: Number(poolOptions?.connectionString ?? 
+      process.env.DATABASE_CONNECTION_TIMEOUT ??  DefaultConnectionTimeout),
+    query_timeout: Number(poolOptions?.query_timeout ??
+      process.env.DATABASE_QUERY_TIMEOUT ?? DefaultQueryTimeout),
+    max: Number(poolOptions?.max ?? process.env.DATABASE_POOL_SIZE ?? DefaultPoolSize)
+  }
+  return newPoolOptions
+}
+
+// creating default pool with default options
+let pool = new Pool(createPoolOptions())
+
+// allows to recreatePool with new options
+export const recreatePool = (poolOptions?: PoolOptions) => {
+  pool = new Pool(createPoolOptions(poolOptions))
+}
 
 export const findOne = async (
   tableName: string,
