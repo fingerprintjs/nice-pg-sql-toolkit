@@ -19,10 +19,10 @@
     "README.md"
   ],
   "dependencies": {
-    "pg": "^8.6.0"
+    "pg": "^8.7.1"
   },
   "devDependencies": {
-    "@types/pg": "^8.6.0",
+    "@types/pg": "^8.6.3",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
     "eslint": "^7.30.0",
